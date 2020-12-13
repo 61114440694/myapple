@@ -1,6 +1,6 @@
 // TapboxA manages its own state.
 
-//------------------------- TapboxA ----------------------------------
+//------------------------- TapboxA -------------------------------------
 
 import 'package:flutter/material.dart';
 
