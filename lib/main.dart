@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'FaA.dart';
+import 'FaB.dart';
+import 'FaC.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -88,11 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         /*3*/
-        Icon(
-          Icons.star,
-          color: Colors.red[500],
-        ),
-        Text('41'),
+        FavoriteWidget(),
       ],
     ),
   );
@@ -105,9 +105,30 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _buildButtonColumn(color, Icons.call, 'CALL'),
-          _buildButtonColumn(color, Icons.near_me, 'ROUTE'),
-          _buildButtonColumn(color, Icons.share, 'SHARE'),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TapboxA()),
+                );
+              },
+              child: _buildButtonColumn(color, Icons.call, 'CALL')),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ParentWidget()),
+                );
+              },
+              child: _buildButtonColumn(color, Icons.near_me, 'ROUTE')),
+          GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ParentWidget1()),
+                );
+              },
+              child: _buildButtonColumn(color, Icons.share, 'SHARE')),
         ],
       ),
     );
@@ -169,6 +190,52 @@ class _MyHomePageState extends State<MyHomePage> {
               fontWeight: FontWeight.w400,
               color: color,
             ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class FavoriteWidget extends StatefulWidget {
+  @override
+  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+  void _toggleFavorite() {
+    setState(() {
+      if (_isFavorited) {
+        _favoriteCount -= 1;
+        _isFavorited = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorited = true;
+      }
+    });
+  }
+
+  // ···
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+            padding: EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited ? Icon(Icons.star) : Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: _toggleFavorite,
+          ),
+        ),
+        SizedBox(
+          width: 18,
+          child: Container(
+            child: Text('$_favoriteCount'),
           ),
         ),
       ],
