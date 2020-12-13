@@ -1,6 +1,6 @@
 // ParentWidget manages the state for TapboxB.
 
-//------------------------ ParentWidget -----------------------------------
+//------------------------ ParentWidget -------------------------------------------------
 
 import 'package:flutter/material.dart';
 
