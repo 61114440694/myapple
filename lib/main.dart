@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'FaA.dart';
-import 'FaB.dart';
-import 'FaC.dart';
+import 'FA.dart';
+import 'FB.dart';
+import 'FC.dart';
 
 void main() {
   runApp(MyApp());
@@ -104,31 +104,30 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget buttonSection = Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+        children: [GestureDetector(
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => TapboxA()),
+  );
+          },
+          child:_buildButtonColumn(color, Icons.call, 'CALL')),
           GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => TapboxA()),
-                );
-              },
-              child: _buildButtonColumn(color, Icons.call, 'CALL')),
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ParentWidget()),
+  );
+          },
+          child:_buildButtonColumn(color, Icons.near_me, 'ROUTE')),
           GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ParentWidget()),
-                );
-              },
-              child: _buildButtonColumn(color, Icons.near_me, 'ROUTE')),
-          GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ParentWidget1()),
-                );
-              },
-              child: _buildButtonColumn(color, Icons.share, 'SHARE')),
+          onTap: (){
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ParentWidget1()),
+  );
+          },
+          child:_buildButtonColumn(color, Icons.share, 'SHARE')),
         ],
       ),
     );
